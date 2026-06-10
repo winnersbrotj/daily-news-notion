@@ -1,9 +1,6 @@
-name: Daily News to Notion
+name: Daily News to Notion (Paused)
 
 on:
-  schedule:
-    # GitHub Actions uses UTC. 00:30 UTC is 09:30 in Korea.
-    - cron: "30 0 * * 1-5"
   workflow_dispatch:
 
 permissions:
