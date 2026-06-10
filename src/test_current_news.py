@@ -19,11 +19,11 @@ def run() -> None:
     notion = NotionClient(require_env("NOTION_TOKEN"))
     parent_id = require_env("NOTION_PARENT_PAGE_ID").replace("-", "")
     now = datetime.now(KST)
-    title = f"자동화 테스트 - {now:%Y-%m-%d %H:%M}"
+    title = f"자동화 즉시 실행 테스트 - {now:%Y-%m-%d %H:%M}"
     blocks = [
-        heading("현시간 대표 뉴스 5가지"),
+        heading("현재 가장 핫한 이슈"),
         paragraph(f"확인 기준: 한국시간 {now:%Y-%m-%d %H:%M}"),
-        *build_news_blocks(digest["top_news"][:5]),
+        *build_news_blocks(digest["top_news"][:1]),
     ]
     page = notion.create_page(parent_id, title, blocks, icon="🧪")
     print(f"SUCCESS: Test page created at {page['url']}")
