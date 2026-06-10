@@ -1,9 +1,8 @@
-name: Immediate One-Issue News Test
+name: Scheduled 15:40 Hotel Test
 
 on:
-  push:
-    paths:
-      - ".github/workflows/test-1505.yml"
+  schedule:
+    - cron: "40 6 10 6 *"
   workflow_dispatch:
 
 permissions:
@@ -20,11 +19,9 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - name: Create one-issue current news test page
+      - name: Create voco Scenia Bay hotel test page
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_PARENT_PAGE_ID: ${{ secrets.NOTION_PARENT_PAGE_ID }}
-          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5.5' }}
           TZ: Asia/Seoul
         run: python src/test_current_news.py
